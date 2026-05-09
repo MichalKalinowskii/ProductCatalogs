@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,16 +13,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.26" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ProductCatalogs.Catalogs.Application\ProductCatalogs.Catalogs.Application.csproj" />
     <ProjectReference Include="..\ProductCatalogs.Catalogs.Domain\ProductCatalogs.Catalogs.Domain.csproj" />
-    <ProjectReference Include="..\ProductCatalogs.Catalogs.Infrastructure\ProductCatalogs.Catalogs.Infrastructure.csproj" />
     <ProjectReference Include="..\ProductCatalogs.Products.Application\ProductCatalogs.Products.Application.csproj" />
-    <ProjectReference Include="..\ProductCatalogs.Products.Domain\ProductCatalogs.Products.Domain.csproj" />
-    <ProjectReference Include="..\ProductCatalogs.Products.Infrastructure\ProductCatalogs.Products.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
