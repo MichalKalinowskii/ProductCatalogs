@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProductCatalogs.Catalogs.Application.DTO
+﻿namespace ProductCatalogs.Catalogs.Application.DTO
 {
     public class CatalogResponse
     {
