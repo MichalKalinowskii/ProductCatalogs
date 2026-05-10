@@ -2,6 +2,6 @@
 {
     public interface IProductApi
     {
-        Task<bool> IsCatalogEmpty(Guid catalogId, CancellationToken cancellationToken);
+        Task<bool> IsCatalogEmptyAsync(Guid catalogId, CancellationToken cancellationToken);
     }
 }

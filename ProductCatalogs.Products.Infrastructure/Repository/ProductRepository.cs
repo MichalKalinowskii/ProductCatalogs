@@ -54,14 +54,21 @@ namespace ProductCatalogs.Products.Infrastructure.Repository
 
         public async Task<Result<List<Product>>> GetProductsByCatalogIdAsync(Guid catalogId, CancellationToken cancellationToken)
         {
-            var products = await productDbContext.Products.Where(x => x.CatalogId == catalogId).ToListAsync(cancellationToken);
+            var products = await productDbContext.Products.Where(x => x.CatalogId == catalogId)
+                .Select(x => new Product
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = x.Price
+                })
+                .ToListAsync(cancellationToken);
 
             return Result<List<Product>>.Success(products);
         }
 
-        public async Task<bool> IsCatalogEmpty(Guid catalogId, CancellationToken cancellationToken)
+        public async Task<bool> IsCatalogEmptyAsync(Guid catalogId, CancellationToken cancellationToken)
         {
-            return await productDbContext.Products.AnyAsync(x => x.CatalogId == catalogId, cancellationToken);
+            return !await productDbContext.Products.AnyAsync(x => x.CatalogId == catalogId, cancellationToken);
         }
 
         public async Task<Result<Guid>> UpdateProductAsync(Domain.Models.Product product, CancellationToken cancellationToken)

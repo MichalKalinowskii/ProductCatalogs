@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.product-item {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.product-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: #f8f9fa;
+  z-index: 1;
+}
+
+.catalog-row-clickable {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border-radius: 6px;
+}
+
+.catalog-row-clickable:hover {
+  background-color: rgba(0, 123, 255, 0.08);
+  transform: translateX(4px);
+}

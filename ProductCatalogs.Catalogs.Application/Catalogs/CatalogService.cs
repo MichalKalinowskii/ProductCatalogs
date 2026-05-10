@@ -93,6 +93,11 @@ namespace ProductCatalogs.Catalogs.Application.Catalogs
 
         public async Task<Result> DeleteCatalogAsync(Guid catalogId, CancellationToken cancellationToken)
         {
+            if (!await productApi.IsCatalogEmptyAsync(catalogId, cancellationToken))
+            {
+                return Result.Failure(new Error("DeleteCatalogAsync.CatalogNotEmpty", "Katalog nie jest pusty."));
+            }
+
             var result = await catalogRepository.DeleteCatalogAsync(catalogId, cancellationToken);
             return result;
         }

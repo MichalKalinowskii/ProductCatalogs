@@ -79,6 +79,11 @@ namespace ProductCatalogs
 
             app.MapControllers();
 
+            app.UseCors(corsBulider => corsBulider
+                .WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
             app.Run();
         }
     }

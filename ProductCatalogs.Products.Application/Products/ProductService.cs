@@ -48,12 +48,11 @@ namespace ProductCatalogs.Products.Application.Products
             var productResponse = new ProductDetailResponse
             {
                 ProductId = productResult.Value.Id,
+                CatalogId = productResult.Value.CatalogId,
                 Name = productResult.Value.Name,
                 Price = productResult.Value.Price,
                 Description = productResult.Value.Description,
                 Code = productResult.Value.Code,
-                CreatedDate = productResult.Value.CreatedDate,
-                UpdatedDate = productResult.Value.UpdatedDate
             };
 
             return Result<ProductDetailResponse>.Success(productResponse);
@@ -67,7 +66,7 @@ namespace ProductCatalogs.Products.Application.Products
                 return Result<bool>.Failure(new Error("ValidateProductRequest.InvalidName", "Nie podano nazwy produktu."));
             }
 
-            if (product.Price < 0)
+            if (product.Price is null || product.Price < 0)
             {
                 return Result<bool>.Failure(new Error("ValidateProductRequest.InvalidPrice", "Cena produktu nie może być mniejsza od 0."));
             }
@@ -95,7 +94,7 @@ namespace ProductCatalogs.Products.Application.Products
                 CatalogId = product.CatalogId,
                 Name = product.Name,
                 Description = product.Description,
-                Price = product.Price,
+                Price = product.Price.Value,
                 Code = product.Code,
                 CreatedDate = DateTime.UtcNow,
                 UpdatedDate = DateTime.UtcNow
@@ -121,7 +120,7 @@ namespace ProductCatalogs.Products.Application.Products
                 CatalogId = product.CatalogId,
                 Name = product.Name,
                 Description = product.Description,
-                Price = product.Price,
+                Price = product.Price.Value,
                 Code = product.Code,
                 UpdatedDate = DateTime.UtcNow
             };

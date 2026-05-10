@@ -1,1 +1,66 @@
-<p>product-form works!</p>
+<div class="card shadow" style="width: 100%; max-width: 500px;">
+  <div class="card-header bg-white">
+    <h4 class="mb-0">Dodaj nowy produkt</h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+
+      <div class="mb-3">
+        <label for="catalogId" class="form-label">Katalog</label>
+        <select id="catalogId" class="form-select" [ngClass]="{'is-invalid': isInvalid(createForm.controls.catalogId)}" formControlName="catalogId">
+          <option value="">Wybierz katalog</option>
+          @for (catalog of catalogs; track catalog.catalogId) {
+            <option [value]="catalog.catalogId">
+              {{ catalog.name }}
+            </option>
+          }
+        </select>
+        @if (isInvalid(createForm.controls.catalogId)) {
+          <div class="invalid-feedback">
+            Wybierz katalog.
+          </div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="name" class="form-label">Nazwa produktu</label>
+        <input type="text" id="name" class="form-control" [ngClass]="{'is-invalid': isInvalid(createForm.controls.name)}" formControlName="name" />
+        @if (isInvalid(createForm.controls.name)) {
+          <div class="invalid-feedback">
+            Nazwa produktu jest wymagana.
+          </div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="price" class="form-label">Cena (PLN)</label>
+        <input type="number" id="price" class="form-control" [ngClass]="{'is-invalid': isInvalid(createForm.controls.price)}" formControlName="price" />
+        @if (isInvalid(createForm.controls.price)) {
+          <div class="invalid-feedback">
+            Nieprawidłowa cena produktu.
+          </div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Opis</label>
+        <textarea id="description" class="form-control" rows="3" formControlName="description"></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="code" class="form-label">Kod</label>
+        <input type="text" id="code" class="form-control" formControlName="code" />
+      </div>
+
+      <div class="d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-secondary" (click)="close.emit()">
+          Zamknij
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="createForm.invalid">
+          Stwórz produkt
+        </button>
+      </div>
+      
+    </form>
+  </div>
+</div>

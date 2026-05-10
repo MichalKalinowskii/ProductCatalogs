@@ -1,1 +1,54 @@
-<p>product-details works!</p>
+@if (product) {
+  <div class="card shadow" style="width: 100%; max-width: 500px;">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+      <h4 class="mb-0">Szczegóły produktu</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="close.emit()"></button>
+    </div>
+    
+    <div class="card-body">
+      <form [formGroup]="form">
+        
+        <div class="mb-3">
+          <label class="form-label">Nazwa</label>
+          <input type="text" class="form-control" formControlName="name">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Cena (PLN)</label>
+          <input type="number" class="form-control" formControlName="price">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Katalog</label>
+          <select class="form-select" formControlName="catalogId">
+            @for (catalog of catalogs; track catalog.catalogId) {
+              <option [value]="catalog.catalogId">
+                {{ catalog.name }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Opis</label>
+          <textarea class="form-control" rows="3" formControlName="description"></textarea>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Kod</label>
+          <input type="text" class="form-control" formControlName="code">
+        </div>
+
+        <div class="d-flex justify-content-end gap-2">
+          <button type="button" class="btn btn-secondary" (click)="close.emit()">
+            Anuluj
+          </button>
+          <button type="button" class="btn btn-primary" (click)="save()" [disabled]="form.invalid">
+            Zapisz zmiany
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+}
