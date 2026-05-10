@@ -61,7 +61,7 @@ export class MainPage implements OnInit {
       });
   }
 
-   public toggleCatalog(catalogId: string): void {
+  public toggleCatalog(catalogId: string): void {
     const isOpened = this.openedCatalogs.includes(catalogId);
 
     if (isOpened) {
@@ -70,11 +70,6 @@ export class MainPage implements OnInit {
     }
 
     this.openedCatalogs.push(catalogId);
-
-    if (this.catalogProducts[catalogId]) {
-      return;
-    }
-
     this.productService.getProductsInCatalog(catalogId).subscribe({
       next: result => {
         this.catalogProducts[catalogId] = result;
